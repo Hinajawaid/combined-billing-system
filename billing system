@@ -1,0 +1,613 @@
+package com.company;
+import javax.swing.*;
+import java.io.*;
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+public class Client_Rec {
+    String CID;
+     String Name ;
+    int Pre_Reading[][] = new int[13][4];
+    int New_Reading[][] = new int[13][4];
+    float Bill_Amount[][] = new float[13][4];
+    float Utility[][] = new float[13][4];
+
+
+}
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public float EBill(int current,int previous){
+        current = current - previous;
+        float bill;
+        //electricity
+        if(current < 100) {
+            bill = 10 * current;
+            return bill;
+        }
+        else if (( current > 100) && ( current < 200)){
+            bill = 1000 + (( current-100)*15);
+            return bill;
+        }
+        else if (( current > 200) && ( current < 300)){
+            bill = 3000 + ((current-200)*18);
+            return bill;
+        }
+        else
+            bill =  current*25;
+        return bill;
+    }
+
+    public static float GasBill(int current,int previous) {
+        current = current - previous;
+        float bill;
+        if( current<=1){
+            bill = 300;
+            return bill;
+        }
+        else if( current<=2){
+            bill = 553;
+            return bill;
+        }
+        else if( current<=3){
+            bill = 738;
+            return bill;
+        }
+        else if( current<=4){
+            bill = 1107;
+            return bill;
+        }
+        else {
+            bill = 1460;
+            return bill;
+        }
+    }
+
+    public float Internet(int current, int previous){
+        current = current - previous;
+        float bill;
+        //internet billkk
+        bill = (current*10);
+        return bill;
+
+    }
+
+    public float WaterBill(int current, int previous){
+        current = current - previous;
+        //water bill
+        float bill;
+        if( current<1000){
+            bill = 400;
+            return bill;
+        }
+        else if(( current > 1000) && ( current < 2000)){
+            bill = 1000;
+            return bill;
+        }
+        else
+        {bill = (float) (1000 + ( current*1.5));
+            return bill;
+        }
+    }
+    public void Generate_Record() throws IOException{
+        // create or modify file for database
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("January.txt")));
+        PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter("Feburary.txt")));
+        PrintWriter pw2 = new PrintWriter(new BufferedWriter(new FileWriter("March.txt")));
+        PrintWriter pw3 = new PrintWriter(new BufferedWriter(new FileWriter("April.txt")));
+        PrintWriter pw4 = new PrintWriter(new BufferedWriter(new FileWriter("May.txt")));
+        PrintWriter pw5 = new PrintWriter(new BufferedWriter(new FileWriter("June.txt")));
+        PrintWriter pw6 = new PrintWriter(new BufferedWriter(new FileWriter("July.txt")));
+        PrintWriter pw7 = new PrintWriter(new BufferedWriter(new FileWriter("August.txt")));
+        PrintWriter pw8 = new PrintWriter(new BufferedWriter(new FileWriter("September.txt")));
+        PrintWriter pw9 = new PrintWriter(new BufferedWriter(new FileWriter("October.txt")));
+        PrintWriter pw10 = new PrintWriter(new BufferedWriter(new FileWriter("November.txt")));
+        PrintWriter pw11 = new PrintWriter(new BufferedWriter(new FileWriter("December.txt")));
+        PrintWriter pw12 = new PrintWriter(new BufferedWriter(new FileWriter("January2022.txt")));
+
+
+
+        Random rand = new Random();
+        Client_Rec rec = new Client_Rec();
+        Scanner input = new Scanner(System.in);
+        Client_Rec CBS[][][][][] = new Client_Rec[11][4][10][10][2];
+        int i = 1;
+        int count = 0;
+        // limits of utilities
+        int bill = 0;
+
+        //print Address and calculate bill
+        for (int sector = 1 ; sector < 11 ; sector++) {
+            for (int ss = 1; ss < 4; ss++) {
+                for (int street = 1; street < 10; street++) {
+                    for (int house = 1; house < 10; house++) {
+                        for (int portion = 1; portion < 2; portion++) {
+                            CBS[sector][ss][street][house][portion] = new Client_Rec();
+
+                            String name = RandomName();
+                            pw.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + ",");
+                            pw.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw1.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw1.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw2.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw2.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw3.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + ",");
+                            pw3.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw4.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw4.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw5.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + ",");
+                            pw5.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw6.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw6.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw7.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + ",");
+                            pw7.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw8.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + ",");
+                            pw8.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw9.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw9.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw10.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw10.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw11.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw11.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+                            pw12.print(CBS[sector][ss][street][house][portion].CID = sector + "" + ss + "" + street + "" + house + "" + portion + "," );
+                            pw12.print(CBS[sector][ss][street][house][portion].Name = name + ",");
+
+
+                            for (int month = 0; month < 13; month++) {
+                                for (int utility = 0; utility < 3; utility++) {
+                                    if (month == 0) {
+                                        //-------------January record------------
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][0] = rand.nextInt(500);//electricity
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][1] = rand.nextInt(10);//gass
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][2] = rand.nextInt(3500);//water
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][3] = rand.nextInt(50);//internet
+                                    } else {
+                                        //------------Remaining months record------------
+                                        CBS[sector][ss][street][house][portion].Pre_Reading[month][0] = CBS[sector][ss][street][house][portion].Pre_Reading[month][0];
+                                        CBS[sector][ss][street][house][portion].Pre_Reading[month][1] = CBS[sector][ss][street][house][portion].Pre_Reading[month][1];
+                                        CBS[sector][ss][street][house][portion].Pre_Reading[month][2] = CBS[sector][ss][street][house][portion].Pre_Reading[month][2];
+                                        CBS[sector][ss][street][house][portion].Pre_Reading[month][3] = CBS[sector][ss][street][house][portion].Pre_Reading[month][3];
+
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][0] = CBS[sector][ss][street][house][portion].Pre_Reading[month][0] + rand.nextInt(500);
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][1] = CBS[sector][ss][street][house][portion].Pre_Reading[month][1] + rand.nextInt(10);
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][2] = CBS[sector][ss][street][house][portion].Pre_Reading[month][2] + rand.nextInt(3500);
+                                        CBS[sector][ss][street][house][portion].New_Reading[month][3] = CBS[sector][ss][street][house][portion].Pre_Reading[month][3] + rand.nextInt(50);
+                                    }
+                                    CBS[sector][ss][street][house][portion].Bill_Amount[month][0] = EBill(CBS[sector][ss][street][house][portion].New_Reading[month][0], CBS[sector][ss][street][house][portion].Pre_Reading[month][0]);
+                                    CBS[sector][ss][street][house][portion].Bill_Amount[month][1] = EBill(CBS[sector][ss][street][house][portion].New_Reading[month][1], CBS[sector][ss][street][house][portion].Pre_Reading[month][1]);
+                                    CBS[sector][ss][street][house][portion].Bill_Amount[month][2] = EBill(CBS[sector][ss][street][house][portion].New_Reading[month][2], CBS[sector][ss][street][house][portion].Pre_Reading[month][2]);
+                                    CBS[sector][ss][street][house][portion].Bill_Amount[month][3] = EBill(CBS[sector][ss][street][house][portion].New_Reading[month][3], CBS[sector][ss][street][house][portion].Pre_Reading[month][3]);
+
+                                }
+
+                                if(month == 0) {
+                                    pw.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0]+ ",");
+                                    pw.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1] + ",");
+                                    pw.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 1) {
+                                    pw1.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw1.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw1.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw1.println(CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 2) {
+                                    pw2.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0]+ "," );
+                                    pw2.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][1] + ",");
+                                    pw2.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+  ",");
+                                    pw2.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3] );
+                                }
+                                if(month == 3) {
+                                    pw3.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw3.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw3.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2] + ",");
+                                    pw3.println(CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 4) {
+                                    pw4.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw4.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw4.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw4.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 5) {
+                                    pw5.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw5.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw5.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw5.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+
+                                }
+                                if(month == 6) {
+                                    pw6.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw6.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw6.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2] + ",");
+                                    pw6.println(CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 7) {
+
+                                    pw7.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw7.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw7.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw7.println(CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+
+                                }
+                                if(month == 8) {
+                                    pw8.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw8.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw8.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw8.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 9) {
+                                    pw9.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0]+ ",");
+                                    pw9.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw9.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw9.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 10) {
+                                    pw10.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][0]+ ",");
+                                    pw10.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw10.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw10.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 11) {
+                                    pw11.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw11.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw11.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw11.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                                if(month == 12) {
+                                    pw12.print( CBS[sector][ss][street][house][portion].Bill_Amount[month][0] + ",");
+                                    pw12.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][1]+ ",");
+                                    pw12.print(CBS[sector][ss][street][house][portion].Bill_Amount[month][2]+ ",");
+                                    pw12.println( CBS[sector][ss][street][house][portion].Bill_Amount[month][3]);
+                                }
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+
+            pw.close();
+        pw1.close();
+        pw2.close();
+        pw3.close();
+        pw4.close();
+        pw5.close();
+        pw6.close();
+        pw7.close();
+        pw8.close();
+        pw9.close();
+        pw10.close();
+        pw11.close();
+            showMenu();
+        }
+
+        public void Display_Record() throws IOException{
+        Scanner input = new Scanner(System.in);
+            System.out.println("Enter the month for which you need to find the record : \n1.January \n2.Feburary \n3.March \n4.April \n5.May \n6.June \n7.July \n8.August \n9.September \n10.October \n11.November \n12.December");
+            int month = input.nextInt();
+
+            BufferedReader bf2 = new BufferedReader(new FileReader("Feburary.txt"));
+            BufferedReader bf3 = new BufferedReader(new FileReader("March.txt"));
+            BufferedReader bf4 = new BufferedReader(new FileReader("April.txt"));
+            BufferedReader bf5 = new BufferedReader(new FileReader("May.txt"));
+            BufferedReader bf6 = new BufferedReader(new FileReader("June.txt"));
+            BufferedReader bf7 = new BufferedReader(new FileReader("July.txt"));
+            BufferedReader bf8 = new BufferedReader(new FileReader("August.txt"));
+            BufferedReader bf9 = new BufferedReader(new FileReader("September.txt"));
+            BufferedReader bf10 = new BufferedReader(new FileReader("October.txt"));
+            BufferedReader bf11 = new BufferedReader(new FileReader("November.txt"));
+            BufferedReader bf12 = new BufferedReader(new FileReader("December.txt"));
+            BufferedReader bf1 = new BufferedReader(new FileReader("January.txt"));
+
+            if(month == 1) {
+                System.out.println("Enter customer ID : ");
+                String cID = String.valueOf(input.nextInt());
+                String line = "";
+
+                while ((line = bf1.readLine()) != null) {
+                    int position = line.indexOf(cID);
+                    if (position > -1) {
+                        System.out.println(bf1.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+                if(month == 2) {
+                    System.out.println("Enter customer ID : ");
+                    String cID1 = String.valueOf(input.nextInt());
+                    String line1 = "";
+
+                    while ((line1 = bf2.readLine()) != null) {
+                        int position = line1.indexOf(cID1);
+                        if (position > -1) {
+                            System.out.println(bf2.readLine());
+                            System.out.println();
+                            break;
+                        }
+                    }
+                }
+            if(month == 3) {
+                System.out.println("Enter customer ID : ");
+                String cID3 = String.valueOf(input.nextInt());
+                String line3 = "";
+
+                while ((line3 = bf3.readLine()) != null) {
+                    int position = line3.indexOf(cID3);
+                    if (position > -1) {
+                        System.out.println(bf3.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 4) {
+                System.out.println("Enter customer ID : ");
+                String cID4 = String.valueOf(input.nextInt());
+                String line4 = "";
+
+                while ((line4 = bf4.readLine()) != null) {
+                    int position = line4.indexOf(cID4);
+                    if (position > -1) {
+                        System.out.println(bf4.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 5) {
+                System.out.println("Enter customer ID : ");
+                String cID5 = String.valueOf(input.nextInt());
+                String line5 = "";
+
+                while ((line5 = bf5.readLine()) != null) {
+                    int position = line5.indexOf(cID5);
+                    if (position > -1) {
+                        System.out.println(bf5.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 6) {
+                System.out.println("Enter customer ID : ");
+                String cID6 = String.valueOf(input.nextInt());
+                String line6 = "";
+
+                while ((line6 = bf6.readLine()) != null) {
+                    int position = line6.indexOf(cID6);
+                    if (position > -1) {
+                        System.out.println(bf6.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 7) {
+                System.out.println("Enter customer ID : ");
+                String cID7 = String.valueOf(input.nextInt());
+                String line7 = "";
+
+                while ((line7 = bf7.readLine()) != null) {
+                    int position = line7.indexOf(cID7);
+                    if (position > -1) {
+                        System.out.println(bf7.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 8) {
+                System.out.println("Enter customer ID : ");
+                String cID8 = String.valueOf(input.nextInt());
+                String line8 = "";
+
+                while ((line8 = bf8.readLine()) != null) {
+                    int position = line8.indexOf(cID8);
+                    if (position > -1) {
+                        System.out.println(bf8.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 9) {
+                System.out.println("Enter customer ID : ");
+                String cID9 = String.valueOf(input.nextInt());
+                String line9 = "";
+
+                while ((line9 = bf9.readLine()) != null) {
+                    int position = line9.indexOf(cID9);
+                    if (position > -1) {
+                        System.out.println(bf9.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 10) {
+                System.out.println("Enter customer ID : ");
+                String cID10 = String.valueOf(input.nextInt());
+                String line10 = "";
+
+                while ((line10 = bf10.readLine()) != null) {
+                    int position = line10.indexOf(cID10);
+                    if (position > -1) {
+                        System.out.println(bf10.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+            if(month == 11) {
+                System.out.println("Enter customer ID : ");
+                String cID11 = String.valueOf(input.nextInt());
+                String line11 = "";
+
+                while ((line11 = bf11.readLine()) != null) {
+                    int position = line11.indexOf(cID11);
+                    if (position > -1) {
+                        System.out.println(bf11.readLine());
+                        System.out.println();
+            System.out.println(bf11.readLine());
+                        break;
+                    }
+                }
+            }
+            if(month == 12) {
+                System.out.println("Enter customer ID : ");
+                String cID12 = String.valueOf(input.nextInt());
+                String line12 = "";
+
+                while ((line12 = bf12.readLine()) != null) {
+                    int position = line12.indexOf(cID12);
+                    if (position > -1) {
+                        System.out.println(bf12.readLine());
+                        System.out.println();
+                        break;
+                    }
+                }
+            }
+
+            bf1.close();
+            bf2.close();
+            bf3.close();
+            bf4.close();
+            bf5.close();
+            bf6.close();
+            bf7.close();
+            bf8.close();
+            bf9.close();
+            bf10.close();
+            bf11.close();
+            bf12.close();
+        showMenu();
+    }
+        public void Clear_Record() throws IOException{
+       // System.out.println("3");
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter (" January.txt")));
+        pw.close();
+        System.out.println("All records have been cleared sucessfully.");
+    }
+        public void Exit() throws IOException{
+        //System.out.println("4");
+        System.exit(1);
+    }
+
+
+        public void showMenu() throws IOException {
+        System.out.println("\t Client record \t\n 1. Generate Record \n 2. Display Records \n 3. Clear all records \n 4. Modification \n 5. Exit \nYour choice:");
+
+            int choice = Integer.parseInt(br.readLine());
+            switch (choice) {
+                case 1:
+                    Generate_Record();
+                    break;
+                case 2:
+                    Display_Record();
+                    break;
+                case 3:
+                    Clear_Record();
+                    break;
+                case 4:
+                    Modification();
+                case 5:
+                    Exit();
+                    break;
+            }
+        }
+
+
+        public static void main(String[] args) throws Exception {
+        Main call = new Main();
+        call.showMenu();
+
+        Scanner input = new Scanner(System.in);
+
+        }
+
+        public static String RandomName() {
+        Client_Rec rec = new Client_Rec();
+        Random rand = new Random();
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int letter = 5;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= 5; i++) {
+            int index = rand.nextInt(letters.length());
+            char randomchar = letters.charAt(index);
+            sb.append(randomchar);
+        }
+        rec.Name = sb.toString();
+        return rec.Name;
+    }
+
+    public void Modification() throws IOException{
+        try{
+            String newName=null;
+            String newEbill=null;
+            String newGbill = null;
+            String newWbill = null;
+            String newIbill = null;
+            boolean checked = true;
+
+            File f= new File("January.txt");          // path to your file
+            File tempFile = new File("Jan2.txt"); // create a temp file in same path
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+            Scanner sc = new Scanner(f);
+            System.out.println("Enter id of the record you want to edit?");
+            Scanner sc2 = new Scanner(System.in);
+            int id = sc2.nextInt();
+            while(sc.hasNextLine())
+            {
+                String currentLine= sc.nextLine();
+                String[] tokens = currentLine.split(",");
+                if(Integer.valueOf(tokens[0])==id && checked)
+                {
+                    sc2.nextLine();
+                    System.out.println("New Name:");
+                    newName= sc2.nextLine();
+                    System.out.println("New E bill:");
+                    newEbill= sc2.nextLine();
+
+                    System.out.println("New Gas bill: ");
+                    newGbill= sc2.nextLine();
+
+                    System.out.println("New Water bill: ");
+                    newWbill= sc2.nextLine();
+
+                    System.out.println("New Internet bill: ");
+                    newIbill= sc2.nextLine();
+
+                    currentLine = tokens[0]+","+newName+","+newEbill+ "," +newGbill+","+newIbill;
+                    checked = false;
+                }
+                writer.write(currentLine + System.getProperty("line.separator"));
+
+            }
+            writer.close();
+            sc.close();
+            f.delete();
+            boolean successful = tempFile.renameTo(f);
+        }
+        catch(IOException e){
+            System.out.println("Exception!");
+        }
+    }
+
+    }
+
